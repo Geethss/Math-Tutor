@@ -59,7 +59,9 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # API Configuration
-API_BASE_URL = "http://localhost:8000"
+# API Configuration - Use environment variable for production, localhost for development
+import os
+API_BASE_URL = os.getenv("API_BASE_URL", "http://localhost:8000")
 API_ENDPOINTS = {
     "health": f"{API_BASE_URL}/api/health",
     "analyze": f"{API_BASE_URL}/api/analyze",
@@ -123,7 +125,7 @@ def display_sidebar():
         
         st.header("📚 Resources")
         st.markdown("""
-        - [API Documentation](http://localhost:8000/docs)
+        - [API Documentation]({API_BASE_URL}/docs)
         - [GitHub Repository](#)
         - [Report Issues](#)
         """)
