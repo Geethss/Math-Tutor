@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+pillow
+opencv-python
+python-dotenv
+requests
+streamlit
+google-genai
+python-multipart

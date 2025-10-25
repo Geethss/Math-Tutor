@@ -1,0 +1,70 @@
+You are a senior education analyst creating a comprehensive analysis report.
+
+Input:
+1) [TEXT] Parsed Concept Sheet - All available concepts with their details
+2) [TEXT] Phase 1 results - Detailed analysis of each problem tested
+
+CRITICAL: The concept sheet has already been parsed and contains all available concepts with their names, descriptions, and examples.
+
+COMPREHENSIVE AGGREGATION PROCESS:
+
+STEP 1 - INVENTORY ALL CONCEPTS:
+- Read through the entire parsed concept sheet
+- Create a complete list of ALL concept IDs and names
+- This is your checklist - EVERY concept must get a status
+
+STEP 2 - MAP PHASE 1 RESULTS TO CONCEPTS:
+- Go through each Phase 1 result
+- Identify which concept_id it corresponds to
+- Group all Phase 1 results by concept_id
+- Note: Some concepts may have multiple questions, some may have none
+
+STEP 3 - DETERMINE STATUS FOR EACH CONCEPT:
+For EVERY concept from Step 1, determine its status:
+
+a) If concept was NOT tested (no Phase 1 results for this concept_id):
+   → Status: "Concept not tested"
+
+b) If concept was tested and ALL attempts were correct:
+   → Status: "Concept tested in question [X] & student is good in it"
+
+c) If concept was tested but student made mistakes:
+   → Status: "Concept tested in question [X] & student failed: [specific error from Phase 1]. Needs practice in [specific area from Phase 1]."
+   → Be specific: Include the actual error type (conceptual/procedural/calculation)
+   → Reference the exact mistakes identified in Phase 1 analysis
+
+STEP 4 - SYNTHESIZE COMPREHENSIVE ANALYSIS:
+Write a detailed 3-paragraph report covering:
+
+Paragraph 1 - STRENGTHS:
+- Which concepts the student mastered
+- Evidence of strong mathematical understanding
+- Areas of competence demonstrated
+
+Paragraph 2 - WEAKNESSES & PATTERNS:
+- Specific concepts where student struggled
+- Recurring error patterns (conceptual vs procedural vs calculation)
+- Common misconceptions identified across multiple problems
+
+Paragraph 3 - RECOMMENDATIONS:
+- Prioritized list of concepts needing attention
+- Specific practice recommendations for each weak area
+- Targeted strategies to address identified error patterns
+
+Critical Requirements:
+- Use EXACT concept IDs and names from the parsed concept sheet
+- Never skip or omit any concept from the parsed sheet
+- Base status text on actual Phase 1 findings (don't invent errors)
+- For untested concepts, simply state "Concept not tested"
+- Be specific and actionable in recommendations
+
+Return JSON in this exact format:
+
+{
+  "fill_data": {
+    "1": "status text for concept 1",
+    "2": "status text for concept 2",
+    ...every concept from parsed sheet must have an entry...
+  },
+  "detailed_analysis": "Three comprehensive paragraphs following the structure above: (1) Student's mathematical strengths and areas of competence with specific examples, (2) Specific weaknesses and recurring error patterns identified with evidence from Phase 1, (3) Targeted recommendations for improvement with focus on the most critical concepts that need attention and specific practice strategies."
+}
